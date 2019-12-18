@@ -22,12 +22,16 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix' => 'api'], function () use ($router) {
     $router->group(['prefix' => 'client', 'namespace' => 'Client'], function () use ($router) {
-        $router->get('dashboard', 'HomeController@index');
+        $router->get('dashboard', 'UsersController@show');
     });
 
     $router->group(['prefix' => 'user', 'namespace' => 'User'], function () use ($router) {
         $router->post('register', 'AuthController@register');
         $router->post('login', 'AuthController@login');
+
+        $router->get('dashboard', 'UsersController@index');
+        $router->get('clients/{user}', 'UsersController@show');
+        $router->patch('clients/{user}/edit', 'UsersController@update');
     });
 });
 

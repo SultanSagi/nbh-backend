@@ -76,4 +76,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return $this->role === self::ROLE_CLIENT;
     }
+
+    public function scopeClient($query)
+    {
+        $query->where('role', self::ROLE_CLIENT);
+    }
 }
