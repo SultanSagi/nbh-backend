@@ -14,3 +14,33 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+// $router->group(['prefix' => 'api'], function() use ($router) {
+//     $router->post('register', 'AuthController@register');
+//     $router->post('login', 'AuthController@login');
+// });
+
+$router->group(['prefix' => 'api'], function () use ($router) {
+    $router->group(['prefix' => 'client', 'namespace' => 'Client'], function () use ($router) {
+        $router->get('dashboard', 'HomeController@index');
+    });
+
+    $router->group(['prefix' => 'user', 'namespace' => 'User'], function () use ($router) {
+        $router->post('register', 'AuthController@register');
+        $router->post('login', 'AuthController@login');
+    });
+});
+
+// $router->group(['prefix' => 'api'], function () use ($router) {
+
+   
+
+
+//     $router->get('profile', 'UsersController@profile');
+
+
+//     $router->get('users/{id}', 'UsersController@singleUser');
+
+
+//     $router->get('users', 'UsersController@allUsers');
+// });
