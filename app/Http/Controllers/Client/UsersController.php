@@ -16,10 +16,6 @@ class UsersController extends Controller
     
     public function show()
     {
-        if(!Auth::user()->isClient()) {
-            return response()->json(['message' => 'You don\'t have permisson to access this server'], 403);
-        }
-
         $user = User
             ::with('clientProfile')
             ->find(Auth::id());

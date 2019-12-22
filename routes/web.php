@@ -20,7 +20,17 @@ $router->get('/', function () use ($router) {
 //     $router->post('login', 'AuthController@login');
 // });
 
-$router->group(['prefix' => 'api'], function () use ($router) {
+$router->options(
+    '/{any:.*}',
+    [
+        'middleware' => ['cors'],
+        function (){
+            return response(['status' => 'success']);
+        }
+    ]
+);
+
+$router->group(['prefix' => 'api', 'middleware' => 'cors'], function () use ($router) {
     $router->group(['prefix' => 'client', 'namespace' => 'Client'], function () use ($router) {
         $router->get('dashboard', 'UsersController@show');
     });
@@ -29,9 +39,13 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         $router->post('register', 'AuthController@register');
         $router->post('login', 'AuthController@login');
 
-        $router->get('dashboard', 'UsersController@index');
-        $router->get('clients/{user}', 'UsersController@show');
-        $router->patch('clients/{user}/edit', 'UsersController@update');
+        $router->post('logout', 'AuthController@logout');
+
+        $router->group(['middleware' => 'auth'], function () use ($router) {
+            $router->get('dashboard', 'UsersController@index');
+            $router->get('clients/{user}', 'UsersController@show');
+            $router->patch('clients/{user}/edit', 'UsersController@update');
+        });
     });
 });
 

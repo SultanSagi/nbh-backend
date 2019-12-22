@@ -8,17 +8,12 @@ use App\Http\Controllers\Controller;
 use App\User;
 
 class UsersController extends Controller
-{
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    
+{   
     public function index()
     {
-        if(!Auth::user()->isUser()) {
-            return response()->json(['message' => 'You don\'t have permisson to access this server'], 403);
-        }
+       if(!Auth::user()->isUser()) {
+           return response()->json(['message' => 'You don\'t have permisson to access this server'], 403);
+       }
 
         $clients = User::with('clientProfile')->client()->get();
         
