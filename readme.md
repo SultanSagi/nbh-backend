@@ -20,7 +20,7 @@ composer install
 Next, create a database.sqlite file:
 
 ```bash
-touch database.sqlite
+touch database/database.sqlite
 cp .env.example .env
 ```
 
@@ -40,9 +40,7 @@ Also we can check PHPUnit tests, by running:
 vendor/bin/phpunit
 ```
 
-You should now be able to start the server using `php artisan serve` and go to http://localhost:8000 to view the app!
-
-Visit http://localhost:8000. Success!
+You should now be able to start the server using `php -S localhost:8000 -t public`
 
 ## Contributing
 

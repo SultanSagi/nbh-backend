@@ -19,7 +19,15 @@ class UsersController extends Controller
         $user = User
             ::with('clientProfile')
             ->find(Auth::id());
+
+        $json = [
+            'id' => $user->id,
+            'email' => $user->email,
+            'role' => $user->role,
+            'client_profile' => $user->clientProfile,
+            'clients' => $user->isClient() ? [] : User::with('clientProfile')->client()->get()
+        ];
         
-        return response()->json(['user' => $user], 200);
+        return response()->json(['user' => $json], 200);
     }
 }
