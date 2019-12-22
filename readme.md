@@ -1,21 +1,49 @@
-# Lumen PHP Framework
+# NBH task API
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/lumen-framework/v/unstable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
+Built in Lumen
+## Getting Started
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+First, clone the repository and cd into it:
 
-## Official Documentation
+```bash
+git clone https://github.com/sultansagi/nbh-backend
+cd nbh-backend
+```
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+Next, update and install with composer:
 
-## Security Vulnerabilities
+```bash
+composer update --no-scripts
+composer install
+```
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+Next, create a database.sqlite file:
 
-## License
+```bash
+touch database.sqlite
+cp .env.example .env
+```
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Lastly, run the following command to migrate your database using the credentials:
+
+```bash
+php artisan migrate
+```
+
+Generate your API secret:
+```bash
+php artisan jwt:secret
+```
+
+Also we can check PHPUnit tests, by running:
+```bash
+vendor/bin/phpunit
+```
+
+You should now be able to start the server using `php artisan serve` and go to http://localhost:8000 to view the app!
+
+Visit http://localhost:8000. Success!
+
+## Contributing
+
+Feel free to contribute to anything.
